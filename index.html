@@ -64,12 +64,10 @@
 </head>
 <body id="home" class="bg-gradient-to-br from-pastelPink via-purple-50 to-pastelBlue min-h-screen flex justify-center items-center p-0 sm:p-6">
 
-    <!-- Background Audio Element -->
-    <audio id="bgMusic" loop>
-        <source src="https://rr3---sn-vgqsrnsz.googlevideo.com/videoplayback?expire=1727550000&ei=BabybearMusic&ip=0.0.0.0&id=XtVpigGwgSE" type="audio/mp4">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-A-Very-Happy-Christmas-597.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- YouTube Hidden Audio Player (เพลง Call Me Maybe - True Beauty OST) -->
+    <div id="youtube-audio-container" style="display:none;">
+        <iframe id="youtube-audio" src="https://www.youtube.com/embed/XtVpigGwgSE?enablejsapi=1&loop=1&playlist=XtVpigGwgSE" frameborder="0"></iframe>
+    </div>
 
     <div class="w-full max-w-md bg-white sm:rounded-[40px] shadow-2xl overflow-hidden relative min-h-screen sm:min-h-[900px] flex flex-col justify-between border-0 sm:border-8 border-deepPink/40">
         
@@ -384,33 +382,48 @@
         </div>
     </div>
 
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         lucide.createIcons();
 
-        const music = document.getElementById('bgMusic');
+        let player;
+        let isPlaying = false;
         const musicToggleBtn = document.getElementById('musicToggleBtn');
         const musicIcon = document.getElementById('musicIcon');
         const musicPulse = document.getElementById('musicPulse');
-        let isPlaying = false;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            music.volume = 0.4;
-            music.play().then(() => {
-                isPlaying = true;
-                updateMusicUI();
-            }).catch(error => {
-                console.log("Autoplay was prevented. Waiting for user interaction.");
-                isPlaying = false;
-                updateMusicUI();
+        // ฟังก์ชันสร้าง YouTube Player ควบคุมเพลง
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-audio', {
+                height: '0',
+                width: '0',
+                videoId: 'XtVpigGwgSE',
+                playerVars: {
+                    'autoplay': 0,
+                    'loop': 1,
+                    'playlist': 'XtVpigGwgSE',
+                    'controls': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
             });
-        });
+        }
+
+        function onPlayerReady(event) {
+            // ตั้งค่าระดับเสียงเริ่มต้น (0 ถึง 100)
+            player.setVolume(40);
+        }
 
         function toggleMusic() {
+            if (!player) return;
+            
             if (isPlaying) {
-                music.pause();
+                player.pauseVideo();
                 isPlaying = false;
             } else {
-                music.play();
+                player.playVideo();
                 isPlaying = true;
             }
             updateMusicUI();

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- FontAwesome Icons for backup -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -94,8 +94,8 @@
                 <div class="flex items-center space-x-2">
                     <!-- Music Toggle Button -->
                     <button id="musicToggleBtn" onclick="toggleMusic()" title="เปิด/ปิดเพลง" class="w-10 h-10 bg-cardPink border border-purple-200 rounded-full flex items-center justify-center text-accentPink shadow-sm hover:scale-105 transition relative">
-                        <i id="musicIcon" data-lucide="music" class="w-4 h-4"></i>
-                        <span id="musicPulse" class="absolute -top-1 -right-1 flex h-3 w-3">
+                        <i id="musicIcon" class="fa-solid fa-volume-xmark text-base"></i>
+                        <span id="musicPulse" class="absolute -top-1 -right-1 hidden h-3 w-3">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accentPink opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-accentPink"></span>
                         </span>
@@ -357,13 +357,12 @@
             if (isPlaying) {
                 musicToggleBtn.classList.add('animate-pulse-slow');
                 musicPulse.style.display = 'flex';
-                musicIcon.setAttribute('data-lucide', 'volume-2');
+                musicIcon.className = "fa-solid fa-volume-high text-base"; // ไอคอนลำโพงเปิด (เสียงดัง)
             } else {
                 musicToggleBtn.classList.remove('animate-pulse-slow');
                 musicPulse.style.display = 'none';
-                musicIcon.setAttribute('data-lucide', 'volume-x');
+                musicIcon.className = "fa-solid fa-volume-xmark text-base"; // ไอคอนลำโพงปิด (ปิดเสียง)
             }
-            lucide.createIcons(); // รีเฟรชไอคอน
         }
 
         function openModal(title, desc) {

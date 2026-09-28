@@ -64,10 +64,9 @@
 </head>
 <body id="home" class="bg-gradient-to-br from-pastelPink via-purple-50 to-pastelBlue min-h-screen flex justify-center items-center p-0 sm:p-6">
 
-    <!-- Background Audio Element (แปลงลิงก์ YouTube เป็นไฟล์เสียงสำหรับเล่นเว็บ) -->
+    <!-- Background Audio Element -->
     <audio id="bgMusic" loop>
         <source src="https://rr3---sn-vgqsrnsz.googlevideo.com/videoplayback?expire=1727550000&ei=BabybearMusic&ip=0.0.0.0&id=XtVpigGwgSE" type="audio/mp4">
-        <!-- สำรองลิงก์เพลงพาสเทลสดใสกรณีโหลดจากยูทูปไม่ได้ -->
         <source src="https://assets.mixkit.co/music/preview/mixkit-A-Very-Happy-Christmas-597.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -95,7 +94,6 @@
                 
                 <!-- Music Player & Menu Buttons -->
                 <div class="flex items-center space-x-2">
-                    <!-- Music Toggle Button -->
                     <button id="musicToggleBtn" onclick="toggleMusic()" title="เปิด/ปิดเพลง" class="w-10 h-10 bg-cardPink border border-purple-200 rounded-full flex items-center justify-center text-accentPink shadow-sm hover:scale-105 transition relative">
                         <i id="musicIcon" class="fa-solid fa-volume-xmark text-base"></i>
                         <span id="musicPulse" class="absolute -top-1 -right-1 hidden h-3 w-3">
@@ -103,7 +101,6 @@
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-accentPink"></span>
                         </span>
                     </button>
-                    <!-- Menu Button -->
                     <button onclick="toggleMenu()" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-textPurple shadow-sm hover:bg-cardPink transition">
                         <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
@@ -151,14 +148,14 @@
                 </div>
             </section>
 
-            <!-- Details My Studio (4 Images) -->
+            <!-- Details My Studio (4 Images) & Cartoon Link Button -->
             <section id="details" class="px-5 mt-6">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="font-bold text-textPurple text-base flex items-center gap-2">
                         <i data-lucide="sparkles" class="w-4 h-4 text-accentPink"></i> Details My Studio
                     </h3>
                 </div>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-3 mb-4">
                     <div class="aspect-square bg-purple-50 rounded-2xl overflow-hidden border border-purple-100 cute-shadow">
                         <img src="https://placehold.co/300x300/f3e8ff/c084fc?text=Detail+1" alt="Studio Detail 1" class="w-full h-full object-cover">
                     </div>
@@ -172,15 +169,19 @@
                         <img src="https://placehold.co/300x300/f3e8ff/d8b4fe?text=Detail+4" alt="Studio Detail 4" class="w-full h-full object-cover">
                     </div>
                 </div>
+                <!-- ลิ้งค์เลือกตูนอยู่ใต้รูป Detail -->
+                <a href="https://line.me" target="_blank" class="w-full bg-cardPink hover:bg-purple-200 border border-purple-200 text-textPurple font-semibold py-3 rounded-2xl text-xs flex items-center justify-center gap-2 transition shadow-sm">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-accentPink"></i> ลิ้งค์เลือกตูน <i data-lucide="arrow-right" class="w-4 h-4 text-accentPink"></i>
+                </a>
             </section>
 
-            <!-- Portfolio & Cartoon Link Section -->
+            <!-- Portfolio Section -->
             <section id="portfolio" class="px-5 mt-6">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="font-bold text-textPurple text-base flex items-center gap-2">
                         <i data-lucide="flower" class="w-4 h-4 text-accentPink"></i> ตัวอย่างผลงาน
                     </h3>
-                    <a href="https://line.me" target="_blank" class="text-xs text-accentPink font-semibold hover:underline flex items-center gap-1">ลิ้งค์เลือกตูน ></a>
+                    <button onclick="openAllPortfolio()" class="text-xs text-accentPink font-semibold hover:underline flex items-center gap-1">ดูทั้งหมด ></button>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div onclick="openPortfolioDetail('ผลงานป้ายร้านสุดน่ารัก', 'https://placehold.co/320x320/f3e8ff/c084fc?text=Work+1')" class="bg-white rounded-2xl overflow-hidden border border-purple-100 cute-shadow cursor-pointer group">
@@ -264,7 +265,6 @@
                     </h3>
                 </div>
                 <div class="space-y-2.5">
-                    <!-- Facebook -->
                     <a href="https://facebook.com" target="_blank" class="bg-cardPink/60 hover:bg-cardPink p-3.5 rounded-2xl border border-purple-200 flex items-center justify-between transition group shadow-sm">
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-accentPink shadow-sm group-hover:scale-105 transition">
@@ -277,7 +277,6 @@
                         </div>
                         <i data-lucide="chevron-right" class="w-4 h-4 text-accentPink"></i>
                     </a>
-                    <!-- Line -->
                     <a href="https://line.me" target="_blank" class="bg-cardPink/60 hover:bg-cardPink p-3.5 rounded-2xl border border-purple-200 flex items-center justify-between transition group shadow-sm">
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-accentPink shadow-sm group-hover:scale-105 transition">
@@ -290,7 +289,6 @@
                         </div>
                         <i data-lucide="chevron-right" class="w-4 h-4 text-accentPink"></i>
                     </a>
-                    <!-- Discord -->
                     <a href="https://discord.gg/R4jEQCgZeQ" target="_blank" class="bg-cardPink/60 hover:bg-cardPink p-3.5 rounded-2xl border border-purple-200 flex items-center justify-between transition group shadow-sm">
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-accentPink shadow-sm group-hover:scale-105 transition">
@@ -448,6 +446,10 @@
 
         function closePortfolioDetail() {
             document.getElementById('portfolioModal').classList.add('hidden');
+        }
+
+        function openAllPortfolio() {
+            openModal('ตัวอย่างผลงานทั้งหมด', 'Babybear Studio มีผลงานออกแบบป้ายและกราฟิกน่ารักๆ ให้เลือกชมมากกว่า 500+ แบบ สามารถทักดูอัลบั้มเพิ่มเติมได้ทาง LINE หรือ Instagram ค่ะ');
         }
 
         function toggleMenu() {

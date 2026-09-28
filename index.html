@@ -64,7 +64,21 @@
 </head>
 <body id="home" class="bg-gradient-to-br from-pastelPink via-purple-50 to-pastelBlue min-h-screen flex justify-center items-center p-0 sm:p-6">
 
-    <!-- YouTube Hidden Audio Player (เพลง Call Me Maybe - True Beauty OST) -->
+    <!-- Welcome Overlay Popup (บังคับแตะ 1 ครั้งเพื่อปลดล็อคเสียงและเข้าเว็บ) -->
+    <div id="welcomeOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-6 cute-shadow text-center relative border-4 border-deepPink/50 animate-pulse-slow">
+            <div class="w-16 h-16 bg-cardPink rounded-full flex items-center justify-center mx-auto mb-3 text-accentPink shadow-inner">
+                <i class="fa-solid fa-music text-2xl animate-bounce"></i>
+            </div>
+            <h3 class="font-bold text-lg text-textPurple mb-1">ยินดีต้อนรับเข้าสู่ร้านค่ะ 💖</h3>
+            <p class="text-xs text-textPurple/80 mb-5">กดปุ่มด้านล่างเพื่อเข้าสู่เว็บไซต์และเปิดเพลงคลอเบาๆ กันเลย!</p>
+            <button onclick="startExperience()" class="w-full bg-gradient-to-r from-accentPink to-deepPink text-white py-3 rounded-2xl text-xs font-bold hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i> เข้าสู่เว็บไซต์ & เปิดเพลง
+            </button>
+        </div>
+    </div>
+
+    <!-- YouTube Hidden Audio Player -->
     <div id="youtube-audio-container" style="display:none;">
         <iframe id="youtube-audio" src="https://www.youtube.com/embed/XtVpigGwgSE?enablejsapi=1&loop=1&playlist=XtVpigGwgSE" frameborder="0"></iframe>
     </div>
@@ -393,7 +407,6 @@
         const musicIcon = document.getElementById('musicIcon');
         const musicPulse = document.getElementById('musicPulse');
 
-        // ฟังก์ชันสร้าง YouTube Player ควบคุมเพลง
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-audio', {
                 height: '0',
@@ -412,8 +425,19 @@
         }
 
         function onPlayerReady(event) {
-            // ตั้งค่าระดับเสียงเริ่มต้น (0 ถึง 100)
-            player.setVolume(40);
+            player.setVolume(50);
+        }
+
+        // ฟังก์ชันเมื่อลูกค้ากดปุ่มต้อนรับ (ช่วยปลดล็อคเสียงและเล่นเพลงทันทีตามกฎบราวเซอร์)
+        function startExperience() {
+            const overlay = document.getElementById('welcomeOverlay');
+            overlay.style.display = 'none';
+
+            if (player) {
+                player.playVideo();
+                isPlaying = true;
+                updateMusicUI();
+            }
         }
 
         function toggleMusic() {
